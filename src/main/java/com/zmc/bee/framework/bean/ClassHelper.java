@@ -4,16 +4,20 @@ import com.zmc.bee.framework.configuration.ConfigHelper;
 import com.zmc.bee.framework.util.ClassUtil;
 import com.zmc.bee.framework.web.annotaion.Controller;
 import com.zmc.bee.framework.web.annotaion.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 /**
  * Created by zhongmc on 2017/5/16.
  */
 public final class ClassHelper {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ClassHelper.class);
     private static Set<Class<?>> classSet;
     static {
+        LOGGER.info("ClassHelper static");
         String basePackage = ConfigHelper.getAppBasePackage();
         classSet = ClassUtil.getClassAsSet(basePackage);
     }

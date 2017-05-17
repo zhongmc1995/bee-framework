@@ -39,6 +39,7 @@ public final class ReflctionUtil {
     public static Object invokeMethod(Object obj, Method method,Object... params){
         Object result = null;
         try {
+            method.setAccessible(true);
             result = method.invoke(obj, params);
         } catch (Exception e) {
             LOGGER.error("invoke method failure",e);
@@ -51,12 +52,12 @@ public final class ReflctionUtil {
      * 设置成员变量
      * @param obj
      * @param field
-     * @param params
+     * @param value
      */
-    public static void setField(Object obj, Field field,Object... params){
+    public static void setField(Object obj, Field field,Object value){
         field.setAccessible(true);
         try {
-            field.set(obj,params);
+            field.set(obj,value);
         } catch (IllegalAccessException e) {
             LOGGER.error("set field failure",e);
             throw new RuntimeException(e);

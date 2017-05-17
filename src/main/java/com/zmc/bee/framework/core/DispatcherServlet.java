@@ -3,6 +3,7 @@ package com.zmc.bee.framework.core;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zmc.bee.framework.Bee;
 import com.zmc.bee.framework.bean.DefaultBeanFactory;
+import com.zmc.bee.framework.bean.IocHelper;
 import com.zmc.bee.framework.configuration.ConfigHelper;
 import com.zmc.bee.framework.util.ReflctionUtil;
 import com.zmc.bee.framework.web.data.Data;
@@ -11,6 +12,9 @@ import com.zmc.bee.framework.web.handler.RequestHandler;
 import com.zmc.bee.framework.web.request.Param;
 import com.zmc.bee.framework.web.view.View;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,8 +35,10 @@ import java.util.Map;
  */
 @WebServlet(value = "/*",loadOnStartup = 0)
 public class DispatcherServlet extends HttpServlet {
+    private final static Logger LOGGER = LoggerFactory.getLogger(DispatcherServlet.class);
     @Override
     public void init(ServletConfig config) throws ServletException {
+        LOGGER.info("DispatcherServlet init start");
         Bee.init();
         ServletContext servletContext = config.getServletContext();
         ServletRegistration servletRegistration = servletContext.getServletRegistration("jsp");

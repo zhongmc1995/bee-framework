@@ -1,6 +1,8 @@
 package com.zmc.bee.framework.bean;
 
 import com.zmc.bee.framework.util.ReflctionUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,11 +12,13 @@ import java.util.Set;
  * Created by zhongmc on 2017/5/16.
  */
 public class DefaultBeanFactory /*implements BeanFactory*/ {
+    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultBeanFactory.class);
 
     private final static Map<Class<?>,Object> CONTAINER = new HashMap<Class<?>,Object>();
 
     //初始化bean容器
     static {
+        LOGGER.info("DefaultBeanFactory static");
         Set<Class<?>> beansSet = ClassHelper.getBeansAsSet();
         for (Class<?> c : beansSet){
             CONTAINER.put(c, ReflctionUtil.newInstance(c));

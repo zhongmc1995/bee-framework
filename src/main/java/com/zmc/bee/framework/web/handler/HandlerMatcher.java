@@ -1,9 +1,12 @@
 package com.zmc.bee.framework.web.handler;
 
 import com.zmc.bee.framework.bean.ClassHelper;
+import com.zmc.bee.framework.bean.DefaultBeanFactory;
 import com.zmc.bee.framework.web.annotaion.Router;
 import com.zmc.bee.framework.web.request.Request;
 import org.apache.commons.collections4.CollectionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -15,8 +18,10 @@ import java.util.Set;
  * 请求和处理方法映射器
  */
 public class HandlerMatcher {
+    private static final Logger LOGGER = LoggerFactory.getLogger(HandlerMatcher.class);
     private static final Map<Request,RequestHandler> handlerMapping = new HashMap<Request, RequestHandler>();
     static {
+        LOGGER.info("HandlerMatcher static");
         Set<Class<?>> controllers = ClassHelper.getControllerClassAsSet();
         if (CollectionUtils.isNotEmpty(controllers)){
             for (Class<?> c : controllers){
