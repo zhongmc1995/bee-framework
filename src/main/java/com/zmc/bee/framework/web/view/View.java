@@ -29,4 +29,13 @@ public class View {
     public void setModel(Map<String, Object> model) {
         this.model = model;
     }
+
+    /**
+     * 将数据设置到视图模型中
+     * @param name
+     * @param value
+     */
+    public void addModel(String name,Object value){
+        model.put(name,value);
+    }
 }
