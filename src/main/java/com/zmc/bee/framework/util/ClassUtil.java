@@ -76,14 +76,24 @@ public final class ClassUtil {
     }
 
     /**
-     * 加载类
+     * 加载类 默认不加载静态代码块
      * @param className
      * @return
      */
     public static Class<?> loadClass(String className){
+        return loadClass(className,false);
+    }
+
+    /**
+     * initialize：true 加载静态代码块 false：不加载静态代码块
+     * @param className
+     * @param initialize
+     * @return
+     */
+    public static Class<?> loadClass(String className,boolean initialize){
         Class<?> cls = null;
         try {
-            cls = getClassLoader().loadClass(className);
+            cls = Class.forName(className,initialize,getClassLoader());
         } catch (ClassNotFoundException e) {
             LOGGER.error("load "+className+" class failure",e);
             throw new RuntimeException(e);

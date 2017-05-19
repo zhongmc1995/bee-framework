@@ -7,6 +7,6 @@ import com.zmc.bee.framework.util.ClassUtil;
  */
 public class ClassUtilTest {
     public static void main(String[] args) {
-        ClassUtil.loadClass(TestBean.class.getName());
+        ClassUtil.loadClass(TestBean.class.getName(),false);
     }
 }

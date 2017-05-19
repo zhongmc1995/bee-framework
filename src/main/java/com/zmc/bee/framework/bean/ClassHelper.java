@@ -7,6 +7,7 @@ import com.zmc.bee.framework.web.annotaion.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.annotation.Annotation;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -64,6 +65,36 @@ public final class ClassHelper {
         beansSet.addAll(getControllerClassAsSet());
         beansSet.addAll(getServiceClassAsSet());
         return beansSet;
+    }
+
+    /**
+     * 获取基础包下的指定父类或者接口的子类或者实现类
+     * @param superClass 指定的父类或者接口
+     * @return
+     */
+    public static Set<Class<?>> getClassSetBySuper(Class<?> superClass){
+        Set<Class<?>> clsSet = new HashSet<Class<?>>();
+        for (Class<?> c : classSet){
+            if (c.isAssignableFrom(superClass) && !c.equals(superClass)){
+                clsSet.add(c);
+            }
+        }
+        return clsSet;
+    }
+
+    /**
+     * 获取指定注解的类
+     * @param annotaionClass
+     * @return
+     */
+    public static Set<Class<?>> getClassSetByAnnotaion(Class<? extends Annotation> annotaionClass){
+        Set<Class<?>> clsSet = new HashSet<Class<?>>();
+        for (Class<?> c : classSet){
+            if (c.isAnnotationPresent(annotaionClass)){
+                clsSet.add(c);
+            }
+        }
+        return clsSet;
     }
 
     public static void main(String[] args) {
