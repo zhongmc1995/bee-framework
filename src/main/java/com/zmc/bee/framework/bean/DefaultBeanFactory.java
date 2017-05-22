@@ -50,4 +50,14 @@ public class DefaultBeanFactory /*implements BeanFactory*/ {
     public static Map<Class<?>,Object> getContainer(){
         return CONTAINER;
     }
+
+    /**
+     * 设置bean
+     * @param cls
+     * @param obj
+     */
+    public static void setBean(Class<?> cls,Object obj){
+        CONTAINER.put(cls,obj);
+    }
+
 }

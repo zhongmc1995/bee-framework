@@ -1,5 +1,6 @@
 package com.zmc.bee.framework;
 
+import com.zmc.bee.framework.aop.core.AopHelper;
 import com.zmc.bee.framework.bean.ClassHelper;
 import com.zmc.bee.framework.bean.DefaultBeanFactory;
 import com.zmc.bee.framework.bean.IocHelper;
@@ -14,7 +15,7 @@ import org.slf4j.LoggerFactory;
 public final class Bee {
     private final static Logger LOGGER = LoggerFactory.getLogger(Bee.class);
     public static void init(){
-        Class<?>[] classList = {ClassHelper.class, DefaultBeanFactory.class, IocHelper.class, HandlerMatcher.class};
+        Class<?>[] classList = {ClassHelper.class, DefaultBeanFactory.class, IocHelper.class, AopHelper.class,HandlerMatcher.class};
         for (Class<?> c : classList){
             LOGGER.info("init "+c.getName());
             ClassUtil.loadClass(c.getName(),true);

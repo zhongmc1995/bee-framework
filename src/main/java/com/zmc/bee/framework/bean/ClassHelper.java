@@ -97,10 +97,4 @@ public final class ClassHelper {
         return clsSet;
     }
 
-    public static void main(String[] args) {
-        Set<Class<?>> controllerClassAsSet = getControllerClassAsSet();
-        for (Class c : controllerClassAsSet){
-            System.out.println(c.getName());
-        }
-    }
 }
