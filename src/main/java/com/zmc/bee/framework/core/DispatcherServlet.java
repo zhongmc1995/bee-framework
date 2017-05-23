@@ -55,6 +55,7 @@ public class DispatcherServlet extends HttpServlet {
         if (null != requestHandler){
             Class<?> controllerClass = requestHandler.getController();
             Object controllerBean = DefaultBeanFactory.getBean(controllerClass);
+            LOGGER.info("the request controller is "+controllerBean);
             Enumeration<String> parameterNames = req.getParameterNames();
             Map<String,Object> pataMap = new HashMap<String, Object>();
             while (parameterNames.hasMoreElements()){
@@ -82,6 +83,7 @@ public class DispatcherServlet extends HttpServlet {
             }
             Param param = new Param(pataMap);
             Method method = requestHandler.getRequestMethod();
+            LOGGER.info("param is "+ param.toString()+" , method is "+method.getName());
             Object result = ReflctionUtil.invokeMethod(controllerBean, method, param);
             if (result instanceof View){
                 View view = (View)result;
